@@ -18,6 +18,8 @@ Clustering was performed using shared nearest neighbour graph construction, usin
 
 We found four clusters suggesting contamination from gonads (clusters 11, 12, 13, 14). We excluded those cells from the analysis and repeated the previous steps for better clustering and marker annotation (`./scripts/scRNAseq/03-seurat_afterQC.R`). We provide data before and after the exclusion of these cell types. Previously described steps were repeated, except we used the first 20 PCs for clustering and UMAP and tSNE plots. Cluster resolution tree graph, list of cluster markers, tSNE and UMAP plots are generated under `./results/scRNAseq/seurat_afterQC/`). New annotations for 16 clusters are given as `./results/scRNAseq/seurat_afterQC/clusterLabels.txt`.
 
+Annotated tSNE and UMAP plots are created using `./scripts/scRNAseq/04-tSNE-UMAP.R` - tSNE plot is used in the manuscript as figure 2a.
+
 # Helper functions/data
 
 In order to use the same database and package versions for geneID conversions and orthology mapping across scripts, we obtained gene IDs and orthologs from Ensembl database using a small wrapper R package called [dataCollectR](https://github.com/mdonertas/dataCollectR) (in ./scripts/scRNAseq/02-seurat.R). Mapping between multiple type of gene IDs (gene external name, Ensembl Gene ID, Entrez Gene ID, Gene Biotype, and gene descriptions) and orthology mapping between human and *N. furzeri* genes were obtained on 2022.02.17 using biomaRt R Package (v2.50.2) (@durinck2009). These data are available under (`./data/processed/helperdata/`).
