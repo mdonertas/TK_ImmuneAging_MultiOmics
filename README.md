@@ -16,7 +16,7 @@ This repository contains the code used for the analysis of scRNAseq, kidney marr
 
 Clustering was performed using shared nearest neighbour graph construction, using the first 10 PCs. Multiple resolutions were assessed to determine the number of clusters. Resolution of 0.3, which provided the last most stable clustering based on the clustering tree was chosen, resulting in 17 clusters (`./results/scRNAseq/seurat/cluster_resolutions.png`). Next, deferentially expressed markers for each cluster were identified. All genes that are expressed in at least 25% of the cells in a cluster were tested. Based on the resulting marker list (`./results/scRNAseq/seurat/clustermarkers.csv`), cell types are annotated (`./results/scRNAseq/seurat/clusterLabels.txt`). 
 
-We found four clusters suggesting contamination from gonads (clusters 11, 12, 13, 14).
+We found four clusters suggesting contamination from gonads (clusters 11, 12, 13, 14). We excluded those cells from the analysis and repeated the previous steps for better clustering and marker annotation (`./scripts/scRNAseq/03-seurat_afterQC.R`). We provide data before and after the exclusion of these cell types. Previously described steps were repeated, except we used the first 20 PCs for clustering and UMAP and tSNE plots. Cluster resolution tree graph, list of cluster markers, tSNE and UMAP plots are generated under `./results/scRNAseq/seurat_afterQC/`). New annotations for 16 clusters are given as `./results/scRNAseq/seurat_afterQC/clusterLabels.txt`.
 
 # Helper functions/data
 

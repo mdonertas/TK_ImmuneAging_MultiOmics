@@ -52,3 +52,4 @@ data/processed/D_run*
 data/processed/E_run*
 data/processed/F_run*
 data/processed/seurat/*
+data/processed/seurat_afterQC/*
