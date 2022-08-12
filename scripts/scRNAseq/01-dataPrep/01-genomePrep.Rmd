@@ -1,0 +1,53 @@
+---
+title: "Data Preparation Summary"
+output: html_notebook
+---
+
+```{r, echo = F}
+## Global options
+library(knitr)
+options(max.print="75")
+opts_chunk$set(echo=TRUE,
+	             cache=TRUE,
+               prompt=FALSE,
+               tidy=TRUE,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE)
+opts_knit$set(width=75)
+knitr::opts_knit$set(root.dir = rprojroot::find_rstudio_root_file())
+prjroot = rprojroot::find_rstudio_root_file()
+```
+
+We use NFU genome and annotations downloaded from Ensembl (release 105).
+
+* **Genome:** Primary assembly
+* **GTF:** Filtered for only protein coding genes and IG and TR genes and pseudogenes as suggested in the 10X genomics cellranger documentation for building custom reference (https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/using/tutorial_mr). 
+
+```{bash, eval = F}
+cellranger mkgtf Nothobranchius_furzeri.Nfu_20140520.105.chr.gtf Nothobranchius_furzeri.Nfu_20140520.105.chr.prot_ig_tr.gtf  --attribute=gene_biotype:protein_coding --attribute=gene_biotype:IG_C_gene --attribute=gene_biotype:IG_D_gene --attribute=gene_biotype:IG_J_gene --attribute=gene_biotype:IG_LV_gene --attribute=gene_biotype:IG_V_gene --attribute=gene_biotype:IG_V_pseudogene --attribute=gene_biotype:IG_J_pseudogene --attribute=gene_biotype:IG_C_pseudogene --attribute=gene_biotype:TR_C_gene --attribute=gene_biotype:TR_D_gene --attribute=gene_biotype:TR_J_gene --attribute=gene_biotype:TR_V_gene --attribute=gene_biotype:TR_V_pseudogene --attribute=gene_biotype:TR_J_pseudogene
+```
+
+1. We run genomemkref.sh to create the transcriptome folder for NFU. 
+2. We run cellrangercount.sh to create count matrices for each sample. 
+3. We run cellranger aggr function to create one matrix with all samples. 
+
+In order to run cellranger aggr function we created aggr.csv file and run 
+
+```{bash, eval = F}
+cellranger aggr --id=allsamples --csv=aggr.csv
+```
+
+Quick EDA with the results reveal that confidently mapped reads per cell for sample B is extremely low (1%) compared to others, causing serious distortion of data after intersample normalisation. We thus decided to remove sample B from the analysis. 
+
+```{bash, eval = F}
+cellranger aggr --id=allsamples_noB --csv=aggr_noB.csv
+```
+
+
+## Create count matrices for each run separately
+
+In order to make sure that there is no batch effect due to multiple runs, we next created count matrices for each sample, across 3 runs separately. We used `cellrangercount2.sh`.
+
+
+
