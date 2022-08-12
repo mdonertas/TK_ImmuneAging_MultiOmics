@@ -1,0 +1,161 @@
+SampleID,tot,Age,seurat_clusters,label,label2,n,prop
+A,4720,young,0,Neutrophils,"Neutrophils
+(cl0)",1700,0.3601694915254237
+A,4720,young,1,Monocytes,"Monocytes
+(cl1)",740,0.15677966101694915
+A,4720,young,10,RBC Progenitors,"RBC Progenitors
+(cl10)",105,0.022245762711864406
+A,4720,young,11,Progenitors,"Progenitors
+(cl11)",105,0.022245762711864406
+A,4720,young,12,Macrophages/Monocytes,"Macrophages/Monocytes
+(cl12)",65,0.013771186440677966
+A,4720,young,13,NK cells,"NK cells
+(cl13)",66,0.013983050847457627
+A,4720,young,14,HSCs,"HSCs
+(cl14)",13,0.002754237288135593
+A,4720,young,15,HSCs,"HSCs
+(cl15)",12,0.002542372881355932
+A,4720,young,2,RBCs,"RBCs
+(cl2)",358,0.07584745762711864
+A,4720,young,3,RBC Progenitors,"RBC Progenitors
+(cl3)",309,0.06546610169491525
+A,4720,young,4,B Cells,"B Cells
+(cl4)",308,0.06525423728813559
+A,4720,young,5,Macrophages,"Macrophages
+(cl5)",241,0.051059322033898305
+A,4720,young,6,RBCs,"RBCs
+(cl6)",217,0.04597457627118644
+A,4720,young,7,Progenitors,"Progenitors
+(cl7)",123,0.026059322033898304
+A,4720,young,8,T Cells,"T Cells
+(cl8)",215,0.045550847457627115
+A,4720,young,9,RBC Progenitors,"RBC Progenitors
+(cl9)",143,0.030296610169491527
+C,2944,young,0,Neutrophils,"Neutrophils
+(cl0)",865,0.2938179347826087
+C,2944,young,1,Monocytes,"Monocytes
+(cl1)",373,0.12669836956521738
+C,2944,young,10,RBC Progenitors,"RBC Progenitors
+(cl10)",48,0.016304347826086956
+C,2944,young,11,Progenitors,"Progenitors
+(cl11)",69,0.0234375
+C,2944,young,12,Macrophages/Monocytes,"Macrophages/Monocytes
+(cl12)",56,0.019021739130434784
+C,2944,young,13,NK cells,"NK cells
+(cl13)",34,0.01154891304347826
+C,2944,young,14,HSCs,"HSCs
+(cl14)",52,0.017663043478260868
+C,2944,young,15,HSCs,"HSCs
+(cl15)",12,0.004076086956521739
+C,2944,young,2,RBCs,"RBCs
+(cl2)",429,0.14572010869565216
+C,2944,young,3,RBC Progenitors,"RBC Progenitors
+(cl3)",261,0.08865489130434782
+C,2944,young,4,B Cells,"B Cells
+(cl4)",130,0.044157608695652176
+C,2944,young,5,Macrophages,"Macrophages
+(cl5)",85,0.028872282608695652
+C,2944,young,6,RBCs,"RBCs
+(cl6)",225,0.07642663043478261
+C,2944,young,7,Progenitors,"Progenitors
+(cl7)",147,0.049932065217391304
+C,2944,young,8,T Cells,"T Cells
+(cl8)",78,0.026494565217391304
+C,2944,young,9,RBC Progenitors,"RBC Progenitors
+(cl9)",80,0.02717391304347826
+D,3669,old,0,Neutrophils,"Neutrophils
+(cl0)",1755,0.4783319705641864
+D,3669,old,1,Monocytes,"Monocytes
+(cl1)",619,0.16871082038702645
+D,3669,old,10,RBC Progenitors,"RBC Progenitors
+(cl10)",60,0.016353229762878167
+D,3669,old,11,Progenitors,"Progenitors
+(cl11)",47,0.012810029980921232
+D,3669,old,12,Macrophages/Monocytes,"Macrophages/Monocytes
+(cl12)",68,0.01853366039792859
+D,3669,old,13,NK cells,"NK cells
+(cl13)",31,0.008449168710820387
+D,3669,old,14,HSCs,"HSCs
+(cl14)",30,0.008176614881439084
+D,3669,old,15,HSCs,"HSCs
+(cl15)",16,0.004360861270100845
+D,3669,old,2,RBCs,"RBCs
+(cl2)",183,0.04987735077677841
+D,3669,old,3,RBC Progenitors,"RBC Progenitors
+(cl3)",154,0.041973289724720635
+D,3669,old,4,B Cells,"B Cells
+(cl4)",140,0.03815753611338239
+D,3669,old,5,Macrophages,"Macrophages
+(cl5)",196,0.05342055055873535
+D,3669,old,6,RBCs,"RBCs
+(cl6)",127,0.03461433633142546
+D,3669,old,7,Progenitors,"Progenitors
+(cl7)",98,0.026710275279367673
+D,3669,old,8,T Cells,"T Cells
+(cl8)",72,0.019623875715453803
+D,3669,old,9,RBC Progenitors,"RBC Progenitors
+(cl9)",73,0.019896429544835104
+E,4686,old,0,Neutrophils,"Neutrophils
+(cl0)",1784,0.3807084933845497
+E,4686,old,1,Monocytes,"Monocytes
+(cl1)",736,0.157063593683312
+E,4686,old,10,RBC Progenitors,"RBC Progenitors
+(cl10)",144,0.030729833546734954
+E,4686,old,11,Progenitors,"Progenitors
+(cl11)",110,0.023474178403755867
+E,4686,old,12,Macrophages/Monocytes,"Macrophages/Monocytes
+(cl12)",73,0.015578318395219804
+E,4686,old,13,NK cells,"NK cells
+(cl13)",95,0.020273154075970978
+E,4686,old,14,HSCs,"HSCs
+(cl14)",55,0.011737089201877934
+E,4686,old,15,HSCs,"HSCs
+(cl15)",17,0.0036278275714895433
+E,4686,old,2,RBCs,"RBCs
+(cl2)",267,0.056978233034571064
+E,4686,old,3,RBC Progenitors,"RBC Progenitors
+(cl3)",262,0.055911224925309436
+E,4686,old,4,B Cells,"B Cells
+(cl4)",264,0.056338028169014086
+E,4686,old,5,Macrophages,"Macrophages
+(cl5)",224,0.04780196329492104
+E,4686,old,6,RBCs,"RBCs
+(cl6)",138,0.029449423815621
+E,4686,old,7,Progenitors,"Progenitors
+(cl7)",205,0.04374733247972685
+E,4686,old,8,T Cells,"T Cells
+(cl8)",112,0.02390098164746052
+E,4686,old,9,RBC Progenitors,"RBC Progenitors
+(cl9)",200,0.04268032437046521
+F,4887,old,0,Neutrophils,"Neutrophils
+(cl0)",2351,0.48107223245344793
+F,4887,old,1,Monocytes,"Monocytes
+(cl1)",660,0.13505217925107427
+F,4887,old,10,RBC Progenitors,"RBC Progenitors
+(cl10)",104,0.021280949457745037
+F,4887,old,11,Progenitors,"Progenitors
+(cl11)",74,0.015142214037241662
+F,4887,old,12,Macrophages/Monocytes,"Macrophages/Monocytes
+(cl12)",55,0.011254348270922856
+F,4887,old,13,NK cells,"NK cells
+(cl13)",74,0.015142214037241662
+F,4887,old,14,HSCs,"HSCs
+(cl14)",59,0.012072846326989973
+F,4887,old,15,HSCs,"HSCs
+(cl15)",13,0.0026601186822181296
+F,4887,old,2,RBCs,"RBCs
+(cl2)",259,0.052997749130345814
+F,4887,old,3,RBC Progenitors,"RBC Progenitors
+(cl3)",118,0.024145692653979946
+F,4887,old,4,B Cells,"B Cells
+(cl4)",252,0.05156537753222836
+F,4887,old,5,Macrophages,"Macrophages
+(cl5)",222,0.04542664211172499
+F,4887,old,6,RBCs,"RBCs
+(cl6)",154,0.031512175158584
+F,4887,old,7,Progenitors,"Progenitors
+(cl7)",200,0.04092490280335584
+F,4887,old,8,T Cells,"T Cells
+(cl8)",205,0.04194802537343974
+F,4887,old,9,RBC Progenitors,"RBC Progenitors
+(cl9)",87,0.01780233271945979

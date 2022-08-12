@@ -20,6 +20,10 @@ We found four clusters suggesting contamination from gonads (clusters 11, 12, 13
 
 Annotated tSNE and UMAP plots are created using `./scripts/scRNAseq/04-tSNE-UMAP.R` - tSNE plot is used in the manuscript as figure 2a.
 
+### Age-related changes in cell-type proportions
+
+Since we do not have enough biological replicates in each age group, we designed a test based on re-sampling of cells of each individual and pairwise comparisons between young and old. More specifically, we rarefy each sample to the same number of cells (2,500) 1,000 times, and for each cell type, we calculate the Log2 Fold change between old and young samples using the median number of cells. Since the number of samples is small, we also calculate the pairwise Log2 difference between the number of cells between young and old sample pairs to calculate a confidence interval using the 1st and 3rd quartiles. Code for the text and EDA can be found as `./scripts/scRNAseq/05-cellType_proportions.R` and the results are under `./results/scRNAseq/celltypes/`.
+
 # Helper functions/data
 
 In order to use the same database and package versions for geneID conversions and orthology mapping across scripts, we obtained gene IDs and orthologs from Ensembl database using a small wrapper R package called [dataCollectR](https://github.com/mdonertas/dataCollectR) (in ./scripts/scRNAseq/02-seurat.R). Mapping between multiple type of gene IDs (gene external name, Ensembl Gene ID, Entrez Gene ID, Gene Biotype, and gene descriptions) and orthology mapping between human and *N. furzeri* genes were obtained on 2022.02.17 using biomaRt R Package (v2.50.2) (@durinck2009). These data are available under (`./data/processed/helperdata/`).
