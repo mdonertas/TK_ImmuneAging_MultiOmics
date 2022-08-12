@@ -20,7 +20,7 @@ easypackages::libraries(
   # 'gghalves',
   # 'ggridges'
 )
-theme_set(theme_rvis(base_size = 6, legend.pos = 'bottom'))
+theme_set(theme_pubr(base_size = 8))
 pntnorm <- (1/0.352777778)
 geom_point2 <- function(...)geom_point(shape=21,...)
 

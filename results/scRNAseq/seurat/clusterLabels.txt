@@ -1,0 +1,17 @@
+0- neutrophils+
+1- myeloid progenitors
+2- b cell
+3- red blood cell=
+4- macrophage/monocytes+
+5- red blood progenitor
+6- red blood cell
+7- red blood / NK
+8- progenitor
+9- pre-lymphoid progenitor
+10- progenitor
+11- gonad / contamination
+12- contamination
+13- sperm contamination
+14- testis contamination
+15- hematopoietic stem cell
+16- hematopoietic stem cell (more advanced stage)

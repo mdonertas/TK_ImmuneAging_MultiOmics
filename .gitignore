@@ -37,3 +37,18 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+
+results/**/*.pdf
+results/**/*.png
+results/**/*.rds
+results/**/*.html
+
+*.DS_Store
+
+data/processed/A_run*
+data/processed/B_run*
+data/processed/C_run*
+data/processed/D_run*
+data/processed/E_run*
+data/processed/F_run*
+data/processed/seurat/*
