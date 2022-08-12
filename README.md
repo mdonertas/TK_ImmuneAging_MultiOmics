@@ -26,4 +26,10 @@ Since we do not have enough biological replicates in each age group, we designed
 
 # Helper functions/data
 
+## Gene ID & Orthology mapping
+
 In order to use the same database and package versions for geneID conversions and orthology mapping across scripts, we obtained gene IDs and orthologs from Ensembl database using a small wrapper R package called [dataCollectR](https://github.com/mdonertas/dataCollectR) (in ./scripts/scRNAseq/02-seurat.R). Mapping between multiple type of gene IDs (gene external name, Ensembl Gene ID, Entrez Gene ID, Gene Biotype, and gene descriptions) and orthology mapping between human and *N. furzeri* genes were obtained on 2022.02.17 using biomaRt R Package (v2.50.2) (@durinck2009). These data are available under (`./data/processed/helperdata/`).
+
+## Gene Ontology data
+
+For visualization of Gene ontology categories and testing the association between repair and replication and repair and immune activation, we compiled gene ontology - gene association data that takes the GO hierarchy into account and propagates the genes included in child terms to ancestors. We obtained the Gene Ontology (GO) and gene associations on 2022.04.07 using `GO.db`, `AnnotationDbi`, and `org.Hs.eg.db` packages in R (`./scripts/helperscripts/GO2Gene.R`).
