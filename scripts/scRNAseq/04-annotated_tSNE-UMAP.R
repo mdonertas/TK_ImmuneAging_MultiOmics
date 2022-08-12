@@ -33,10 +33,9 @@ tsneplot = ggplot(tsnedat, aes(x = tSNE_1, y = tSNE_2, color = cluster)) +
   xlab('tSNE 1') + ylab('tSNE 2')+ 
   geom_label(data = tsnetext, aes(label = cluster), color = 'black', 
              alpha = 0.2, label.size = NA, fill = 'gray',
-             size = 4/pntnorm, label.padding = unit(1,'pt'), nudge_y = -2) + 
+             size = 4/pntnorm, label.padding = unit(1,'pt'), nudge_y = -3) + 
   theme_classic(base_size = 8)
 
-plotsave(tsneplot, './results/msfigures/tsne',width = 12, height = 8)
 plotsave(tsneplot, './results/scRNAseq/seurat_afterQC/tsne_annotated',width = 12, height = 8)
 
 umapdat = data.frame(allint@reductions$umap@cell.embeddings) %>%
