@@ -62,6 +62,12 @@ We calculated differences between log2 median protein abundance levels of young 
 
 Gene set enrichment analysis was performed using `gseGO` function in `clusterProfiler` package, using human gene symbols and `org.Hs.eg.db` annotation package in R. We analysed the GO Biological Processes categories with a minimum of 10 and maximum of 500 annotated genes. We used BY correction for multiple testing and considered BY-corrected p-value\<0.05 as significant. Details of Human - *N. furzeri* orthology mapping are explained under `Helper functions/data -> Gene ID & Orthology mapping`. Two outputs from `gseGO` function are used: core enrichment genes (i.e. genes that contribute most to the enrichment result.) and NES (i.e. normalized enrichment score).
 
+### Choice of GO representatives for visualisation and summarisation
+
+Since go enrichment results gave many significant GO categories but most of them showed overlaps, we used an in-house method to choose representative GO categories for visualisation and summarisation purposes. GO enrichment results include the whole list of GO categories, together with their representatives.
+
+In order to choose the representatives we calculated the jaccard similarity between GO categories based on core enrichment genes. We then performed hierarchical clustering of the similarity matrix, cutting the tree at different levels (20 to 70 clusters). We calculated the median jaccard index within each cluster. We take the minimum number of clusters, k, where at least half of the clusters have median jaccard index of 0.5 or higher. This resulted in 20 clusters (=representatives) for plasma proteomics and 50 clusters (=representatives) for kidney marrow proteomics.
+
 ### Plasma proteomics - GSEA details 
 
 438 of 474 proteins had at least one ortholog in humans. In total they map to 608 human proteins. In order to make sure 1 to many orthology does not bias the results, we repeated the analysis using only 1 random ortholog resulting in 438 proteins. We detected a spearman correlation of 0.95 (p-value \< 2.2e-16). Enrichment results are given as:
@@ -78,11 +84,9 @@ Gene set enrichment analysis was performed using `gseGO` function in `clusterPro
 
 -   Kidney marrow, after outlier removal: `./results/KMproteomics/outler_removed/GOenrichment.csv`
 
-### Choice of GO representatives for visualisation and summarisation
+#### Gene overlaps across GO categories represented by 'DNA repair', 'double-strand break repair via homologous recombination', and 'response to UV'
 
-Since go enrichment results gave many significant GO categories but most of them showed overlaps, we used an in-house method to choose representative GO categories for visualisation and summarisation purposes. GO enrichment results include the whole list of GO categories, together with their representatives.
-
-In order to choose the representatives we calculated the jaccard similarity between GO categories based on core enrichment genes. We then performed hierarchical clustering of the similarity matrix, cutting the tree at different levels (20 to 70 clusters). We calculated the median jaccard index within each cluster. We take the minimum number of clusters, k, where at least half of the clusters have median jaccard index of 0.5 or higher. This resulted in 20 clusters (=representatives) for plasma proteomics and 50 clusters (=representatives) for kidney marrow proteomics.
+We collected all genes associated with the significant GO categories in Kidney marrow proteomics, represented by 'DNA repair', 'double-strand break repair via homologous recombination', and 'response to UV' categories. Using only the gene set that has an absolute log2 fold change larger than 1, we calculated the jaccard index across GO categories. We plotted the jaccard similarity indices as a correlation plot, where the color and size of squares show the similarity index and the GO categories are colored by the hierarchical clustering of similarity data. We performed PCA on the same data (without scaling as jaccard index can only range between 0 and 1) to see clustering of GO categories in two dimensions.
 
 # Helper functions/data
 
