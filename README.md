@@ -36,7 +36,7 @@ We calculated differences between log2 median protein abundance levels of young 
 
 ## Gene ontology - Gene set enrichment analysis (GSEA)
 
-Gene set enrichment analysis was performed using `gseGO` function in `clusterProfiler` package, using human gene symbols and `org.Hs.eg.db` annotation package in R. We analysed the GO Biological Processes categories with a minimum of 10 and maximum of 500 annotated genes. We used BY correction for multiple testing and considered BY-corrected p-value\<0.05 as significant. Details of Human - *N. furzeri* orthology mapping are explained under `Helper functions/data -> Gene ID & Orthology mapping`. Two outputs from `gseGO` function are used: core enrichment genes (i.e. genes that contribute most to the enrichment result.) and NES (i.e. normalized enrichment score).
+Gene set enrichment analysis was performed using `gseGO` function in `clusterProfiler` package (v4.2.2) (@Wu2021 ), using human gene symbols and `org.Hs.eg.db` annotation package in R. We analysed the GO Biological Processes categories with a minimum of 10 and maximum of 500 annotated genes. We used BY correction for multiple testing and considered BY-corrected p-value\<0.05 as significant. Details of Human - *N. furzeri* orthology mapping are explained under `Helper functions/data -> Gene ID & Orthology mapping`. Two outputs from `gseGO` function are used: core enrichment genes (i.e. genes that contribute most to the enrichment result.) and NES (i.e. normalized enrichment score).
 
 ### Choice of GO representatives for visualisation and summarisation
 
@@ -70,7 +70,7 @@ We collected all genes associated with the significant GO categories in Kidney m
 
 **./scripts/scRNAseq/01-dataPrep/**: *N. furzeri* primary genome assembly and genome annotations were downloaded from the Ensembl website (version 105) (@cunningham2021). Cell Ranger pipeline (@zheng2017) is used to create a custom reference genome for *N.furzeri* (using `cellranger mkref`) and a genome annotation file (using `cellranger mkgtf` command and only protein-coding, IG or TR genes). Count matrices were generated for each sample in each run separately using the `cellranger count` function (`./scripts/scRNAseq/01-dataPrep/cellrangercount2.sh`).
 
-**./scripts/scRNAseq/02-seurat.R**: We checked the distribution of number of cells, number of features, UMI counts per cells, total read counts per cell across samples and runs. One young sample (sample B) was sequenced in only one sequencing run and had low quality (`./results/scRNAseq/qc_prenorm/allqc.png`). Thus, it is excluded from the downstream analysis. All other samples showed a comparable number of cells, features, UMI, and total read counts. All downstream steps were performed using Seurat package (@Seurat) in R. We filtered out the cells with ​​less than 200 or more than 2500 features. All samples in each run were log normalized independently using the `NormalizeData` function in the Seurat package. Next, 2000 variable features were selected using the 'vst' method implemented in the `FindVariableFeatures` function in the Seurat package. Next, all data were integrated using canonical correlation analysis to find anchors and the first 20 dimensions for the anchor weighting process. Data were scaled, and the first 10 PCs were used to generate the tSNE, UMAP, and clustering of the cells (`./results/scRNAseq/seurat`).
+**./scripts/scRNAseq/02-seurat.R**: We checked the distribution of number of cells, number of features, UMI counts per cells, total read counts per cell across samples and runs. One young sample (sample B) was sequenced in only one sequencing run and had low quality (`./results/scRNAseq/qc_prenorm/allqc.png`). Thus, it is excluded from the downstream analysis. All other samples showed a comparable number of cells, features, UMI, and total read counts. All downstream steps were performed using Seurat package (v.4.1.1) (@Seurat) in R. We filtered out the cells with ​​less than 200 or more than 2500 features. All samples in each run were log normalized independently using the `NormalizeData` function in the Seurat package. Next, 2000 variable features were selected using the 'vst' method implemented in the `FindVariableFeatures` function in the Seurat package. Next, all data were integrated using canonical correlation analysis to find anchors and the first 20 dimensions for the anchor weighting process. Data were scaled, and the first 10 PCs were used to generate the tSNE, UMAP, and clustering of the cells (`./results/scRNAseq/seurat`).
 
 ## Cell-type clustering and annotations
 
@@ -92,11 +92,17 @@ Four GO representative categories, Cellular detoxification, DNA repair, DNA repl
 
 ## Gene ID & Orthology mapping
 
-In order to use the same database and package versions for geneID conversions and orthology mapping across scripts, we obtained gene IDs and orthologs from Ensembl database using a small wrapper R package called [dataCollectR](https://github.com/mdonertas/dataCollectR) (in ./scripts/scRNAseq/02-seurat.R). Mapping between multiple type of gene IDs (gene external name, Ensembl Gene ID, Entrez Gene ID, Gene Biotype, and gene descriptions) and orthology mapping between human and *N. furzeri* genes were obtained on 2022.02.17 using biomaRt R Package (v2.50.2) (@durinck2009). These data are available under (`./data/processed/helperdata/`).
+In order to use the same database and package versions for geneID conversions and orthology mapping across scripts, we obtained gene IDs and orthologs from Ensembl database using a small wrapper R package, [dataCollectR](https://github.com/mdonertas/dataCollectR) (in ./scripts/scRNAseq/02-seurat.R). Mapping between multiple type of gene IDs (gene external name, Ensembl Gene ID, Entrez Gene ID, Gene Biotype, and gene descriptions) and orthology mapping between human and *N. furzeri* genes were obtained on 2022.02.17 using biomaRt R Package (v2.50.2) (@durinck2009). These data are available under (`./data/processed/helperdata/`).
 
 ## Gene Ontology data
 
-For visualization of Gene ontology categories and testing the association between repair and replication and repair and immune activation, we compiled gene ontology - gene association data that takes the GO hierarchy into account and propagates the genes included in child terms to ancestors. We obtained the Gene Ontology (GO) and gene associations on 2022.04.07 using `GO.db`, `AnnotationDbi`, and `org.Hs.eg.db` packages in R (`./scripts/helperscripts/GO2Gene.R`).
+For visualization of Gene ontology categories and testing the association between repair and replication and repair and immune activation, we compiled gene ontology - gene association data that takes the GO hierarchy into account and propagates the genes included in child terms to ancestors. We obtained the Gene Ontology (GO) and gene associations on 2022.04.07 using `GO.db (v3.14)`, `AnnotationDbi (v1.56.2)`, and `org.Hs.eg.db (v3.14.0)` packages in R (`./scripts/helperscripts/GO2Gene.R`).
+
+# Shiny app - KIAMO
+
+# Code availability
+
+Analysis scripts for the proteomics and scRNAseq data are available on github (<https://github.com/mdonertas/TK_ImmuneAging_MultiOmics>). The following R packages were used throughout the analysis for data wrangling and visualisation: tidyverse (v.1.3.2) (@tidyverse ), ComplexHeatmap (v2.10.0) (@ComplexHeatmap ), ggrepel (v0.9.1) (@ggrepel ), ggpubr (v0.4.0) (@ggpubr ), ggthemes (v4.2.4) (@ggthemes ), ggplot2 (v3.3.6) (@ggplot2 ). Code for the shiny app is available (<https://github.com/mdonertas/KIAMO>).
 
 # Manuscript figures
 
