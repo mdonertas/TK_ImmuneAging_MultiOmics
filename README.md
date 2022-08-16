@@ -100,6 +100,8 @@ For visualization of Gene ontology categories and testing the association betwee
 
 # Shiny app - KIAMO
 
+Differential abundance results, scRNAseq data, and mapping between proteomics and scRNAseq gene IDs were generated using `./scripts/prep_data_for_shiny.R`. App is accessible through <https://genome.leibniz-fli.de/shiny/kiamo/>
+
 # Code availability
 
 Analysis scripts for the proteomics and scRNAseq data are available on github (<https://github.com/mdonertas/TK_ImmuneAging_MultiOmics>). The following R packages were used throughout the analysis for data wrangling and visualisation: tidyverse (v.1.3.2) (@tidyverse ), ComplexHeatmap (v2.10.0) (@ComplexHeatmap ), ggrepel (v0.9.1) (@ggrepel ), ggpubr (v0.4.0) (@ggpubr ), ggthemes (v4.2.4) (@ggthemes ), ggplot2 (v3.3.6) (@ggplot2 ). Code for the shiny app is available (<https://github.com/mdonertas/KIAMO>).
