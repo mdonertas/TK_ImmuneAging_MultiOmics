@@ -97,3 +97,23 @@ In order to use the same database and package versions for geneID conversions an
 ## Gene Ontology data
 
 For visualization of Gene ontology categories and testing the association between repair and replication and repair and immune activation, we compiled gene ontology - gene association data that takes the GO hierarchy into account and propagates the genes included in child terms to ancestors. We obtained the Gene Ontology (GO) and gene associations on 2022.04.07 using `GO.db`, `AnnotationDbi`, and `org.Hs.eg.db` packages in R (`./scripts/helperscripts/GO2Gene.R`).
+
+# Manuscript figures
+
+-   Figure 1d - `./scripts/msfigures/plasmaProteomics_GOgenes.R`
+
+-   Figure 2a & 2b - `./scripts/msfigures/scRNAseq_tSNE_celltype.R`
+
+-   Figure 3a - `./scripts/msfigures/KMproteomics_GOresults.R`
+
+-   Figure 3b & 3c - `./scripts/msfigures/KMproteomics_repairGOcategory_overlaps.R`
+
+-   Figure 4 - `./scripts/scRNAseq/06-GOanalysis.R`
+
+-   Figure S1 - `./scripts/scRNAseq/02-seurat.R`
+
+-   Figure S2 - `./scripts/scRNAseq/03-seurat_afterQC.R`
+
+-   Figure S3a - PCA
+
+-   Figure S3b & S3c - `./scripts/msfigures/KMproteomics_GOresults.R`
