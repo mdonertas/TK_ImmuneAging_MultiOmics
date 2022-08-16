@@ -40,7 +40,7 @@ PCA done using `prcomp` function in base R, on VSN normalized, log2 transformed 
 
 ## Plasma proteomics data description
 
-We detected 474 proteins across 10 samples in plasma proteomics. One old sample (old sample 3) was an outlier (`./results/plasmaProteomics/allsamples/pca.pdf`). PC2 (27%) is mainly driven by this outlier. This PC shows enrichment for proteins involved in response to toxic substance, DNA confirmation change, regulation of catalytic activity and many other categories (based on human GO annotations in `org.Hs.eg.db` package and Human - N. furzeri orthology mapping explained under `Helper functions/data -> Gene ID & Orthology mapping`. We used gene set enrichment analysis implemented with `gseGO` function in `clusterProfiler` package in R). Since we do not have any technical explanations why this sample may be an outlier, it can represent biological variability thus to be more conservative we did not exclude this sample. However, we found comparable results in the downstream after exclusion of this sample.
+We detected 474 proteins across 10 samples in plasma proteomics. One old sample (old sample 3) was an outlier (`./results/plasmaProteomics/allsamples/pca.pdf`). PC2 (27%) is mainly driven by this outlier. This PC shows enrichment for proteins involved in response to toxic substance, DNA confirmation change, regulation of catalytic activity and many other categories (we calculated enrichment based on GSEA procedure explained below). Since we do not have any technical explanations why this sample may be an outlier, it can represent biological variability thus to be more conservative we did not exclude this sample. However, we found comparable results in the downstream after exclusion of this sample.
 
 ## Kidney Marrow proteomics data description
 
@@ -48,7 +48,41 @@ We detected 6770 proteins across 10 samples in kidney marrow proteomics. One you
 
 ## Differential expression
 
-## Gene ontology analysis
+We calculated differences between log2 median protein abundance levels of young and old samples to determine differential expression. Statistical significance was assigned based on Wilcoxon rank sum test using `wilcox.test` function in R. DE results are given as:
+
+-   Plasma proteomics, all samples: `./results/plasmaProteomics/allsamples/proteinDEtest.csv`
+
+-   Plasma proteomics, after outlier removal: `./results/plasmaProteomics/outler_removed/proteinDEtest.csv`
+
+-   Kidney marrow, all samples: `./results/KMproteomics/allsamples/proteinDEtest.csv`
+
+-   Kidney marrow, after outlier removal: `./results/KMproteomics/outler_removed/proteinDEtest.csv`
+
+## Gene ontology - Gene set enrichment analysis (GSEA)
+
+Gene set enrichment analysis was performed using `gseGO` function in `clusterProfiler` package, using human gene symbols and `org.Hs.eg.db` annotation package in R. We analysed the GO Biological Processes categories with a minimum of 10 and maximum of 500 annotated genes. We used BY correction for multiple testing and considered BY-corrected p-value\<0.05 as significant. Details of Human - *N. furzeri* orthology mapping are explained under `Helper functions/data -> Gene ID & Orthology mapping`. Two outputs from `gseGO` function are used: core enrichment genes (i.e. genes that contribute most to the enrichment result.) and NES (i.e. normalized enrichment score).
+
+### Plasma proteomics - GSEA details 
+
+438 of 474 proteins had at least one ortholog in humans. In total they map to 608 human proteins. In order to make sure 1 to many orthology does not bias the results, we repeated the analysis using only 1 random ortholog resulting in 438 proteins. We detected a spearman correlation of 0.95 (p-value \< 2.2e-16). Enrichment results are given as:
+
+-   Plasma proteomics, all samples: `./results/plasmaProteomics/allsamples/GOenrichment.csv`
+
+-   Plasma proteomics, after outlier removal: `./results/plasmaProteomics/outler_removed/GOenrichment.csv`
+
+### Kidney marrow proteomics - GSEA details
+
+5395 of 6770 proteins had at least one ortholog in humans. In total they map to 5208 human proteins. In order to make sure 1 to many orthology does not bias the results, we repeated the analysis using only 1 random ortholog resulting in 5207 proteins. We detected a spearman correlation of 0.96 (p-value \< 2.2e-16). Enrichment results are given as:
+
+-   Kidney marrow, all samples: `./results/KMproteomics/allsamples/GOenrichment.csv`
+
+-   Kidney marrow, after outlier removal: `./results/KMproteomics/outler_removed/GOenrichment.csv`
+
+### Choice of GO representatives for visualisation and summarisation
+
+Since go enrichment results gave many significant GO categories but most of them showed overlaps, we used an in-house method to choose representative GO categories for visualisation and summarisation purposes. GO enrichment results include the whole list of GO categories, together with their representatives.
+
+In order to choose the representatives we calculated the jaccard similarity between GO categories based on core enrichment genes. We then performed hierarchical clustering of the similarity matrix, cutting the tree at different levels (20 to 70 clusters). We calculated the median jaccard index within each cluster. We take the minimum number of clusters, k, where at least half of the clusters have median jaccard index of 0.5 or higher. This resulted in 20 clusters (=representatives) for plasma proteomics and 50 clusters (=representatives) for kidney marrow proteomics.
 
 # Helper functions/data
 
