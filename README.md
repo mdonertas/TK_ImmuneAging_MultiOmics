@@ -114,6 +114,6 @@ For visualization of Gene ontology categories and testing the association betwee
 
 -   Figure S2 - `./scripts/scRNAseq/03-seurat_afterQC.R`
 
--   Figure S3a - PCA
+-   Figure S3a - `./scripts/KMproteomics/02-EDA_QC.R`
 
 -   Figure S3b & S3c - `./scripts/msfigures/KMproteomics_GOresults.R`
