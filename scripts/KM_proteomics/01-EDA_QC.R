@@ -40,14 +40,17 @@ imptext = paste('PC', 1:10,' (',round(imp,2),'%)' , sep='')
 pcaplot = data.frame(pcx$x ) %>%
   mutate(fullID = rownames(pcx$x)) %>%
   separate(fullID,into=c('Age','sampleID'),remove = F) %>%
-  ggplot(aes(x = PC1, y = PC2, color = Age)) +
+  ggplot(aes(x = PC1, y = PC2, color = Age))  +
+  geom_hline(yintercept = 0, linetype = 'dashed', color = 'gray35') +
+  geom_vline(xintercept = 0, linetype = 'dashed', color = 'gray35') +
   geom_point(size = 3) +
   # geom_text_repel(aes(label = fullID), color = 'black', size = 7/pntnorm) +
   scale_color_manual(values = agecol) +
   xlab(imptext[1]) +
   ylab(imptext[2]) +
-  theme_rvis(base_size = 6, legend.pos = c(0,0), just.par = c(0,0)) +
-  coord_fixed(ratio = imp[2]/imp[1])
+  # theme_rvis(base_size = 6, legend.pos = c(0,0), just.par = c(0,0)) +
+  # coord_fixed(ratio = imp[2]/imp[1])
+  theme_minimal() 
 pcaplot
 
 plotsave(pcaplot, './results/KMproteomics/allsamples/pca', width = 8, height = 8)
