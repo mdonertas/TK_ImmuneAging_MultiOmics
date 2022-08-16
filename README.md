@@ -34,6 +34,22 @@ Four GO representative categories, Cellular detoxification, DNA repair, DNA repl
 
 Proteomics data was analyzed using MaxQuant, version 1.6.10.43 (@Cox2008 ). Peptide fragmentation spectra were searched against the canonical sequences of the *Nothobranchius furzeri* proteome (downloaded September 2019 from UniProt). Protein names and primary gene names, corresponding to the Uniprot IDs were downloaded from Uniprot and used for annotation of the data. Methionine oxidation and protein N-terminal acetylation were set as variable modifications; cysteine carbamidomethylation was set as fixed modification. The digestion parameters were set to "specific" and "Trypsin/P". Quantification was set to "Reporter ion MS3". The isotope purity correction factors, provided by the manufacturer, were imported and included in the analysis. The minimum number of peptides and razor peptides for protein identification was 1; the minimum number of unique peptides was 0. Protein identification was performed at a peptide spectrum matches and protein false discovery rate of 0.01. The "second peptide" option was on. TMT reporter intensities were normalized using vsn (@Huber2002 ) and log2 transformed in R, version 3.4.3 (@base ).
 
+## Exploratory data analysis and PCA
+
+PCA done using `prcomp` function in base R, on VSN normalized, log2 transformed data with z-transformation (proteins are scaled).
+
+## Plasma proteomics data description
+
+We detected 474 proteins across 10 samples in plasma proteomics. One old sample (old sample 3) was an outlier (`./results/plasmaProteomics/allsamples/pca.pdf`). PC2 (27%) is mainly driven by this outlier. This PC shows enrichment for proteins involved in response to toxic substance, DNA confirmation change, regulation of catalytic activity and many other categories (based on human GO annotations in `org.Hs.eg.db` package and Human - N. furzeri orthology mapping explained under `Helper functions/data -> Gene ID & Orthology mapping`. We used gene set enrichment analysis implemented with `gseGO` function in `clusterProfiler` package in R). Since we do not have any technical explanations why this sample may be an outlier, it can represent biological variability thus to be more conservative we did not exclude this sample. However, we found comparable results in the downstream after exclusion of this sample.
+
+## Kidney Marrow proteomics data description
+
+We detected 6770 proteins across 10 samples in kidney marrow proteomics. One young sample (young sample 2) was an outlier (`./results/KKMproteomics/allsamples/pca.pdf`). PC2 (20%) shows association with this outlier. This PC shows enrichment for metabolic (mostly catabolic) processes. Like in plasma proteomics, we do not have any technical explanations why this sample may be an outlier and since it can represent biological variability we wanted to be more conservative we did not exclude this sample. However, we found comparable results in the downstream after exclusion of this sample.
+
+## Differential expression
+
+## Gene ontology analysis
+
 # Helper functions/data
 
 ## Gene ID & Orthology mapping
