@@ -4,7 +4,7 @@ bibliography: references.bib
 
 This repository contains the code used for the analysis of scRNAseq, kidney marrow proteomics, and plasma proteomics datasets generated as part of Morabito et al. killifish immune ageing multiomics project.
 
-# Proteomics 
+# Proteomics
 
 ## Data preprocessing
 
@@ -44,7 +44,7 @@ Since go enrichment results gave many significant GO categories but most of them
 
 In order to choose the representatives we calculated the jaccard similarity between GO categories based on core enrichment genes. We then performed hierarchical clustering of the similarity matrix, cutting the tree at different levels (20 to 70 clusters). We calculated the median jaccard index within each cluster. We take the minimum number of clusters, k, where at least half of the clusters have median jaccard index of 0.5 or higher. This resulted in 20 clusters (=representatives) for plasma proteomics and 50 clusters (=representatives) for kidney marrow proteomics.
 
-### Plasma proteomics - GSEA details 
+### Plasma proteomics - GSEA details
 
 438 of 474 proteins had at least one ortholog in humans. In total they map to 608 human proteins. In order to make sure 1 to many orthology does not bias the results, we repeated the analysis using only 1 random ortholog resulting in 438 proteins. We detected a spearman correlation of 0.95 (p-value \< 2.2e-16). Enrichment results are given as:
 
@@ -87,6 +87,10 @@ Since we do not have enough biological replicates in each age group, we designed
 ## scRNAseq GO analysis
 
 Four GO representative categories, Cellular detoxification, DNA repair, DNA replication, and Immune cell activation, were chosen for further investigation in scRNAseq data based on the results of proteomics dataset from the kidney marrow. These GO categories represent 35, 14, 55, and 15 GO categories respectively (the full list is given as `./results/scRNAseq/GO_in_scRNAseq/rep_goIDs.csv`. All human genes associated with these categories were obtained as explained under `Helper functions/data -> Gene Ontology data`. We then get the orthologs in *N. furzeri*, intersect with the scRNAseq dataset, get the genes with an absolute value of log2 fold change of 1 in kidney marrow proteomics data, and only use the non-overlapping genes. The number of genes after each step is given as `./results/scRNAseq/GO_in_scRNAseq/genes_in_categories.csv`. For each cell in the dataset, we calculated the percentage of the expressed genes in each representative category and divided this number to the percent of expressed genes among all genes detected in the scRNAseq. In this way, we aimed to normalize for the overall transcriptional profile of cells and obtained an odd's ratio showing the enrichment of genes specific to the GO categories of interest. We coloured the cells on tSNE with this odds ratio (`./results/scRNAseq/GO_in_scRNAseq/percExp_tsne.pdf`). We also calculated the correlation between the enrichment scores of i) replication and repair and ii) replication and immune cell activation. In order to correct for potential bias due to mean to the regression, we obtained p values for correlations based on a permutation test where we randomly selected N number of genes among non-overlapping scRNAseq genes, where N is the number of genes used in correlation calculation for DNA repair and Immune cell activation. We calculated correlations between DNA replication and these permutations of genes and used the number of cases where we obtained a correlation as extreme as the observed value. `'./results/scRNAseq/GO_in_scRNAseq/correlplots_percExp.pdf` shows the result where the length of each bar shows the correlation coefficient and a darker color shows the significant results based on the permutation test (corrected for multiple testing using BY procedure). The correlations are calculated using Spearman's correlation.
+
+# ImageStream ML classification performance
+
+\% class prediction for each true cluster is calculated using ImageStream and visualised using `ComplexHeatmap` package (v2.10.0) (@ComplexHeatmap ) in R.
 
 # Helper functions/data
 
