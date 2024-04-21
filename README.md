@@ -88,6 +88,26 @@ Since we do not have enough biological replicates in each age group, we designed
 
 Four GO representative categories, Cellular detoxification, DNA repair, DNA replication, and Immune cell activation, were chosen for further investigation in scRNAseq data based on the results of proteomics dataset from the kidney marrow. These GO categories represent 35, 14, 55, and 15 GO categories respectively (the full list is given as `./results/scRNAseq/GO_in_scRNAseq/rep_goIDs.csv`. All human genes associated with these categories were obtained as explained under `Helper functions/data -> Gene Ontology data`. We then get the orthologs in *N. furzeri*, intersect with the scRNAseq dataset, get the genes with an absolute value of log2 fold change of 1 in kidney marrow proteomics data, and only use the non-overlapping genes. The number of genes after each step is given as `./results/scRNAseq/GO_in_scRNAseq/genes_in_categories.csv`. For each cell in the dataset, we calculated the percentage of the expressed genes in each representative category and divided this number to the percent of expressed genes among all genes detected in the scRNAseq. In this way, we aimed to normalize for the overall transcriptional profile of cells and obtained an odd's ratio showing the enrichment of genes specific to the GO categories of interest. We coloured the cells on tSNE with this odds ratio (`./results/scRNAseq/GO_in_scRNAseq/percExp_tsne.pdf`). We also calculated the correlation between the enrichment scores of i) replication and repair and ii) replication and immune cell activation. In order to correct for potential bias due to mean to the regression, we obtained p values for correlations based on a permutation test where we randomly selected N number of genes among non-overlapping scRNAseq genes, where N is the number of genes used in correlation calculation for DNA repair and Immune cell activation. We calculated correlations between DNA replication and these permutations of genes and used the number of cases where we obtained a correlation as extreme as the observed value. `'./results/scRNAseq/GO_in_scRNAseq/correlplots_percExp.pdf` shows the result where the length of each bar shows the correlation coefficient and a darker color shows the significant results based on the permutation test (corrected for multiple testing using BY procedure). The correlations are calculated using Spearman's correlation.
 
+## scRNASeq cell type annotation comparison with Teefy et al 2023
+
+### Data
+
+Paper: https://www.cell.com/cell-reports/fulltext/S2211-1247(23)01249-4
+
+We downloaded the final annotated Seurat object file available on FigShare (https://doi.org/10.6084/m9.figshare.22766894) as indicated in the paper.
+
+### Reannotating 20% of kidney data in Teefy et al. 2023
+
+Script: ./scripts/scRNASeq/08-teefy/01-teefy_analysis.R
+
+First to have an understanding of the reference based annotation, we subsampled 20% of male kidney cells from Teefy et al. (436 cells) and reannotated using the rest of the dataset as the reference. The re-annotation performance is given as a heatmap (./results/scRNAseq/teefy/reannotate_20p.pdf). Overall performance is good, with some problems in annotating progenitor cells. 
+
+### Annotating our scRNASeq data using Teefy et al. as a reference
+
+Script: ./scripts/scRNASeq/08-teefy/02-teefyref_annotation.R
+
+Using Teefy data we reannotated our dataset. The distribution of our clusters across reannotated cell types is given as a heatmap ('./results/scRNAseq/teefyref_annotation/annotation_dist.pdf').
+
 # ImageStream ML classification performance
 
 \% class prediction for each true cluster is calculated using ImageStream and visualised using `ComplexHeatmap` package (v2.10.0) (@ComplexHeatmap ) in R.
@@ -109,25 +129,3 @@ Differential abundance results, scRNAseq data, and mapping between proteomics an
 # Code availability
 
 Analysis scripts for the proteomics and scRNAseq data are available on github (<https://github.com/mdonertas/TK_ImmuneAging_MultiOmics>). The following R packages were used throughout the analysis for data wrangling and visualisation: tidyverse (v.1.3.2) (@tidyverse ), ComplexHeatmap (v2.10.0) (@ComplexHeatmap ), ggrepel (v0.9.1) (@ggrepel ), ggpubr (v0.4.0) (@ggpubr ), ggthemes (v4.2.4) (@ggthemes ), ggplot2 (v3.3.6) (@ggplot2 ). Code for the shiny app is available (<https://github.com/mdonertas/KIAMO>).
-
-# Manuscript figures
-
--   Figure 1d - `./scripts/msfigures/plasmaProteomics_GOgenes.R`
-
--   Figure 2a & 2b - `./scripts/msfigures/scRNAseq_tSNE_celltype.R`
-
--   Figure 3a - `./scripts/msfigures/KMproteomics_GOresults.R`
-
--   Figure 3b & 3c - `./scripts/msfigures/KMproteomics_repairGOcategory_overlaps.R`
-
--   Figure 4 - `./scripts/scRNAseq/06-GOanalysis.R`
-
--   Figure S1 - `./scripts/scRNAseq/02-seurat.R`
-
--   Figure S2 - `./scripts/scRNAseq/03-seurat_afterQC.R`
-
--   Figure S3a - `./scripts/KMproteomics/02-EDA_QC.R`
-
--   Figure S3b & S3c - `./scripts/msfigures/KMproteomics_GOresults.R`
-
--   Figure SX - proteomics, effect of the outliers - `./scripts/msfigures/proteomics_outliercheck.R`
