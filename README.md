@@ -108,6 +108,13 @@ Script: ./scripts/scRNASeq/08-teefy/02-teefyref_annotation.R
 
 Using Teefy data we reannotated our dataset. The distribution of our clusters across reannotated cell types is given as a heatmap ('./results/scRNAseq/teefyref_annotation/annotation_dist.pdf').
 
+### Annotating our scRNASeq data using Teefy et al. kidney cells as a reference
+
+Script: ./scripts/scRNASeq/08-teefy/03-teefyref_kidney_annotation.R
+
+Using Teefy kidney data we reannotated our dataset. The distribution of our clusters across reannotated cell types is given as a heatmap ('./results/scRNAseq/teefyref_kidney_annotation/annotation_kidney_dist.pdf').
+
+
 # ImageStream ML classification performance
 
 \% class prediction for each true cluster is calculated using ImageStream and visualised using `ComplexHeatmap` package (v2.10.0) (@ComplexHeatmap ) in R.
