@@ -72,7 +72,7 @@ objsave(pred_mat, './data/processed/teefy/pred_mat')
 pred_rel_mat = pred_mat/rowSums(pred_mat) * 100
 objsave(pred_rel_mat, './data/processed/teefy/pred_rel_mat')
 pheatmap::pheatmap(t(pred_rel_mat), cluster_rows = F, cluster_cols = F, 
-                   color = RColorBrewer::brewer.pal(8,'Oranges'), 
+                   color = colorRampPalette(RColorBrewer::brewer.pal(8,'Oranges'))(100), 
                    cellwidth = 15, cellheight = 15,fontsize = 8, 
                    display_numbers = T, fontsize_number = 5, 
                    number_format = '%.0f', filename = './results/scRNAseq/teefy/reannotate_20p.pdf')

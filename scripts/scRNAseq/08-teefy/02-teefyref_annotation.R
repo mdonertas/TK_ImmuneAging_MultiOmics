@@ -49,7 +49,7 @@ objsave(pred_mat, './data/processed/teefyref_annotation/pred_mat')
 pred_rel_mat = pred_mat/rowSums(pred_mat) * 100
 objsave(pred_rel_mat, './data/processed/teefyref_annotation/pred_rel_mat')
 pheatmap::pheatmap(t(pred_rel_mat), 
-                   color = RColorBrewer::brewer.pal(8,'Oranges'), 
+                   color = colorRampPalette(RColorBrewer::brewer.pal(8,'Oranges'))(100), 
                    cellwidth = 15, cellheight = 15,fontsize = 8, 
                    display_numbers = T, fontsize_number = 5, 
                    number_format = '%.0f', filename = './results/scRNAseq/teefyref_annotation/annotation_dist.pdf')
