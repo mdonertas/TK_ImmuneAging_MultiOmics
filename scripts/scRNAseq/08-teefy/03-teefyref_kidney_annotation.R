@@ -24,18 +24,18 @@ trans.anc = FindTransferAnchors(reference = killi.combined.filt ,
                                 query = allint, 
                                 dims = 1:30, reference.reduction = "pca")
 
-objsave(trans.anc, './data/processed/teefyref_kidney_annotation/trans.anc')
+objsave(trans.anc, './data/processed/teefyref_kidney_annotation/trans.anc2')
 
 preds = TransferData(anchorset = trans.anc, 
                      refdata = killi.combined.filt$Annotation_v1, 
                      dims = 1:30)
-objsave(preds, './data/processed/teefyref_kidney_annotation/preds')
+objsave(preds, './data/processed/teefyref_kidney_annotation/preds2')
 
 pred_res = preds %>%
   mutate(cell = rownames(.)) %>%
   right_join(allint@meta.data) %>%
   rowwise() %>%
-  mutate(label2 = paste(label,'_cl', seurat_clusters, sep = '')) %>%
+  mutate(label2 = paste('cl', seurat_clusters, sep = '')) %>%
   select(label2, predicted.id, cell) %>%
   group_by(label2, predicted.id) %>%
   summarise(n = n())
@@ -48,14 +48,14 @@ rownames(pred_mat) = pred_mat$label2
 pred_mat$label2 = NULL
 pred_mat = as.matrix(pred_mat)
 
-objsave(pred_mat, './data/processed/teefyref_kidney_annotation/pred_mat')
+objsave(pred_mat, './data/processed/teefyref_kidney_annotation/pred_mat2')
 pred_rel_mat = pred_mat/rowSums(pred_mat) * 100
-objsave(pred_rel_mat, './data/processed/teefyref_kidney_annotation/pred_rel_mat')
+objsave(pred_rel_mat, './data/processed/teefyref_kidney_annotation/pred_rel_mat2')
 pheatmap::pheatmap(t(pred_rel_mat), 
                    color = colorRampPalette(RColorBrewer::brewer.pal(8,'Oranges'))(100), 
                    cellwidth = 15, cellheight = 15,fontsize = 8, 
                    display_numbers = T, fontsize_number = 5, 
-                   number_format = '%.0f', filename = './results/scRNAseq/teefyref_kidney_annotation/annotation_kidney_dist.pdf')
+                   number_format = '%.0f', filename = './results/scRNAseq/teefyref_kidney_annotation/annotation_kidney_dist2.pdf')
 
 
 

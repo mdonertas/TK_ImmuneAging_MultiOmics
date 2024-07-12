@@ -6,11 +6,11 @@
 5,Macrophages
 6,RBCs
 7,Progenitors
-8,T Cells
+8,RBCs
 9,RBC Progenitors
 10,RBC Progenitors
 11,Progenitors
 12,Macrophages/Monocytes
 13,NK cells
-14,HSCs
-15,HSCs
+14,RBCs
+15,Thrombocytes

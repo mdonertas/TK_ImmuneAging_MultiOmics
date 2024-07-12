@@ -29,7 +29,7 @@ objsave(km_wilcox, './data/processed/shiny/km_wilcox')
 allint <-
   readRDS('./data/processed/seurat_afterQC/allintegrated.rds')
 
-labels <- read_csv('./results/seurat_afterQC/clusterLabels',
+labels <- read_csv('./results/scRNAseq/seurat_afterQC/clusterLabels.txt',
                    col_names = c('seurat_clusters', 'label')) %>%
   mutate(seurat_clusters = as.character(seurat_clusters))
 
